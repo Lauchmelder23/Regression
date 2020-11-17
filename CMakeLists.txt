@@ -27,7 +27,8 @@ add_executable(regression
 )
 
 target_include_directories(regression PRIVATE
-	include
+	"include"
+	"vendor/csv"
 	${Qt5_INCLUDE_DIRS}
 )
 
@@ -46,3 +47,7 @@ if(WIN32)
 		COMMAND ${CMAKE_COMMAND} -E copy ${Qt5_DIR}/../../../plugins/platforms/qwindows.dll $<TARGET_FILE_DIR:regression>
 	)
 endif()
+
+add_custom_command(TARGET regression POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:regression>/resources
+)

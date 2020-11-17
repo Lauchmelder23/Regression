@@ -1,6 +1,19 @@
+#include <iostream>
+
 #include <qmessagebox.h>
 #include <qapplication.h>
 #include "MainWindow.hpp"
+
+#include <csv.h>
+
+void DisplayQMessageBox(const QString& description)
+{
+	QMessageBox msgBox;
+	msgBox.setWindowTitle("Error");
+	msgBox.setText(description);
+	msgBox.setIcon(QMessageBox::Icon::Critical);
+	msgBox.exec();
+}
 
 int main(int argc, char** argv)
 {
@@ -8,12 +21,7 @@ int main(int argc, char** argv)
 
 	if (argc < 2)
 	{
-		QMessageBox no_args_error_box;
-		no_args_error_box.setWindowTitle("Error");
-		no_args_error_box.setText("Too few arguments. Need at least one CSV file.");
-		no_args_error_box.setIcon(QMessageBox::Icon::Critical);
-		no_args_error_box.exec();
-
+		DisplayQMessageBox("Too few arguments. Need at least one CSV file.");
 		return 1;
 	}
 
