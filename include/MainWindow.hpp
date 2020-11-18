@@ -11,9 +11,12 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget* parent = nullptr);
+	explicit MainWindow(char** argv, QWidget* parent = nullptr);
 	~MainWindow();
+
+	int Failed() { return error_code; }
 
 private:
 	Ui::MainWindow* ui;
+	int error_code;
 };

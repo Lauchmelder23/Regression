@@ -5,7 +5,6 @@ project(Regression)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS include/ui)
@@ -18,12 +17,18 @@ file(GLOB_RECURSE source_files
 
 file(GLOB_RECURSE include_files
 	"include/*.hpp"
-	"include/*.ui"
 )
+
+file(GLOB_RECURSE ui_files
+	"include/ui/*.ui"
+)
+
+qt5_wrap_ui(target_ui_files ${ui_files})
 
 add_executable(regression
 	${include_files}
 	${source_files}
+	${target_ui_files}
 )
 
 target_include_directories(regression PRIVATE

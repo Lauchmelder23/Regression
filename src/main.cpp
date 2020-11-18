@@ -25,7 +25,11 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	MainWindow window;
+	MainWindow window(argv);
+	int err_code = window.Failed();
+	if (err_code)
+		return err_code;
+
 	window.show();
 
 	return app.exec();
